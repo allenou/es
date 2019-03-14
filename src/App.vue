@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="notification" v-show="copied">{{copyedText}} is now copied to your clipboard</div>
-    <input type="hidden" id="copy">
+    <input type="text" id="copy">
     <input type="text" id="search" placeholder="Try to search..." v-model="keyword">
     <ul>
       <li v-for="(item,index) in results" :key="index">
@@ -61,7 +61,7 @@ export default {
     },
     copyUnicode(unicode) {
       const input = document.querySelector("#copy");
-      this.copyedText = input.value = ":" + unicode + ":";
+      input.value = this.copyedText = ":" + unicode + ":";
       input.select();
       if (document.execCommand("copy")) {
         this.copied = true;
@@ -91,7 +91,7 @@ export default {
 
 <style>
 #app {
-  max-width: 1024px;
+  max-width: 996px;
   margin: auto;
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -108,6 +108,13 @@ export default {
   line-height: 40px;
   color: #fff;
   background-color: #4caf50;
+}
+#copy {
+  display: inline-block;
+  position: absolute;
+  z-index: -11;
+  width: 10%;
+  border: none;
 }
 ul {
   overflow: hidden;
