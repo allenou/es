@@ -5,25 +5,17 @@
       <li v-for="(item,index) in list" :key="index">
         <p @click="addToShoppingCar(item)">
           <i v-html="emoji2Image(item.char)" @click="download($event,item)"></i>
-          <span @click="copyUnicode(item.name)">:{{item.name}}:</span>
+          <span @click="copyEmojiName(item.name)">:{{item.name}}:</span>
         </p>
       </li>
     </ul>
     <div class="notification" v-show="copied">{{copyedText}} is now copied to your clipboard</div>
-    <ShoppingCar :goods="goods"></ShoppingCar>
-    <Download :emoji="emoji" v-if="showDownloadDialog" @hide="hideDownload"></Download>
   </div>
 </template>
 <script>
 import twemoji from "twemoji";
-import ShoppingCar from "./ShoppingCar";
-import Download from "./Download";
 
 export default {
-  components: {
-    ShoppingCar,
-    Download
-  },
   props: {
     list: Array
   },
@@ -31,9 +23,7 @@ export default {
     return {
       copied: false,
       copyedText: "",
-      goods: [],
-      emoji: null,
-      showDownloadDialog: false
+      emoji: null
     };
   },
   watch: {
@@ -46,31 +36,19 @@ export default {
     }
   },
   methods: {
-    emoji2Image(unicode) {
-      return twemoji.parse(unicode, {});
+    emoji2Image(name) {
+      return twemoji.parse(name, {});
     },
-    copyUnicode(unicode) {
+    copyEmojiName(name) {
       const input = document.querySelector("#copy");
-      input.value = this.copyedText = ":" + unicode + ":";
+      input.value = this.copyedText = ":" + name + ":";
       input.select();
       if (document.execCommand("copy")) {
         this.copied = true;
         document.execCommand("copy");
       }
     },
-    addToShoppingCar(item) {
-      const arr = this.goods.filter(obj => obj.name === item.name);
-      if (arr.length === 0) {
-        this.goods.push(item);
-      }
-    },
-    showDownload(emoji) {
-      this.emoji = emoji;
-      // this.showDownloadDialog = true;
-    },
-    hideDownload() {
-      this.showDownloadDialog = false;
-    },
+
     download(e, emoji) {
       const image = e.target;
       const img = new Image();
@@ -78,8 +56,8 @@ export default {
       img.onload = function() {
         const canvas = document.createElement("canvas");
         const context = canvas.getContext("2d");
-        canvas.width = image.width;
-        canvas.height = image.height;
+        canvas.width = image.width*2;
+        canvas.height = image.height*2;
         context.drawImage(img, 0, 0, canvas.width, canvas.height);
 
         var tag = document.createElement("a");
@@ -109,16 +87,23 @@ export default {
   padding-top: 40px;
 }
 #emoji-list ul {
-  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+
   width: 60%;
   margin: auto;
-  padding-left: 0;
+  padding: 30px;
+  background-color: #fff;
 }
 
 #emoji-list li {
-  float: left;
+
   width: 25%;
-  padding: 14px 0;
+
+  height: 40px;
+  margin-bottom: 30px;
+  line-height: 40px;
+ 
   text-align: left;
   list-style: none;
 }
@@ -139,9 +124,9 @@ export default {
 #emoji-list li p:hover span {
   font-weight: 700;
 }
-/* #emoji-list p:hover img.emoji {
+#emoji-list p:hover img.emoji {
   max-width: 32px;
-} */
+}
 /* #emoji-list li span{
    transition: all .6s ease-in;
 } */

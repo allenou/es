@@ -11,7 +11,8 @@
   "dependencies": {
     "emojilib": "^2.4.0",
     "twemoji": "^11.3.0",
-    "vue": "^2.6.6"
+    "vue": "^2.6.6",
+    "vue-github-badge": "^1.0.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

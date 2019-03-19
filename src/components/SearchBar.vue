@@ -1,11 +1,17 @@
 <template>
   <header>
-    <input type="text" id="search" placeholder="Try to search..." v-model="keyword">
-    <!-- <i @click="showShoppingCar">购物车</i> -->
+    <p>
+      <input type="text" placeholder="Try to search..." v-model="keyword" ref="search">
+    </p>
+    <GitHubBadge slug="allenou/es" fill="#fff"></GitHubBadge>
   </header>
 </template>
 <script>
+import GitHubBadge from "vue-github-badge";
 export default {
+  components: {
+    GitHubBadge
+  },
   data() {
     return {
       keyword: ""
@@ -21,7 +27,7 @@ export default {
   },
   methods: {
     autoFocus() {
-      document.querySelector("#search").focus();
+      this.$refs.search.focus();
     },
     showShoppingCar() {
       this.$bus.$emit("show");
@@ -31,15 +37,25 @@ export default {
 </script>
 <style scoped>
 header {
+  display: flex;
+  align-items: center;
   padding: 30px 0;
   background-color: #232323;
 }
-input {
+header /deep/ a{
+  top: inherit!important ;
+}
+p {
   width: 60%;
-  height: 40px;
   margin: auto;
-  text-indent: 14px;
-  border: 1px solid #efefef;
+  padding: 0 30px;
+  background-color: #fff;
+}
+input {
+  width: 100%;
+  height: 40px;
+  margin-left: -16px;
+  border: none;
   font-size: 18px;
   line-height: 40px;
   outline: none;
