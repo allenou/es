@@ -3,7 +3,7 @@
     <p>
       <input type="text" placeholder="Try to search..." v-model="keyword" ref="search">
     </p>
-    <GitHubBadge slug="allenou/es" fill="#fff"></GitHubBadge>
+    <GitHubBadge slug="allenou/emoji" fill="#fff"></GitHubBadge>
   </header>
 </template>
 <script>

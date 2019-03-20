@@ -3,8 +3,8 @@
     <input type="text" id="copy">
     <ul>
       <li v-for="(item,index) in list" :key="index">
-        <p @click="addToShoppingCar(item)">
-          <i v-html="emoji2Image(item.char)" @click="download($event,item)"></i>
+        <p>
+          <i v-html="emoji2Image(item.char)" @click="down($event,item)"></i>
           <span @click="copyEmojiName(item.name)">:{{item.name}}:</span>
         </p>
       </li>
@@ -14,7 +14,7 @@
 </template>
 <script>
 import twemoji from "twemoji";
-
+import download from "downloadjs";
 export default {
   props: {
     list: Array
@@ -37,7 +37,10 @@ export default {
   },
   methods: {
     emoji2Image(name) {
-      return twemoji.parse(name, {});
+      return twemoji.parse(name, {
+        folder: "svg",
+        ext: ".svg"
+      });
     },
     copyEmojiName(name) {
       const input = document.querySelector("#copy");
@@ -49,26 +52,11 @@ export default {
       }
     },
 
-    download(e, emoji) {
-      const image = e.target;
-      const img = new Image();
-      img.crossOrigin = "";
-      img.onload = function() {
-        const canvas = document.createElement("canvas");
-        const context = canvas.getContext("2d");
-        canvas.width = image.width*2;
-        canvas.height = image.height*2;
-        context.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-        var tag = document.createElement("a");
-        tag.download = emoji.name;
-        tag.style.display = "none";
-        tag.href = canvas.toDataURL("image/png");
-        document.body.appendChild(tag);
-        tag.click();
-        document.body.removeChild(tag);
-      };
-      img.src = image.src;
+    down(e, emoji) {
+      const element = e.target;
+      if (element.tagName === "IMG") {
+        download(element.getAttribute("src"));
+      }
     }
   }
 };
@@ -97,18 +85,16 @@ export default {
 }
 
 #emoji-list li {
-
   width: 25%;
 
   height: 40px;
   margin-bottom: 30px;
   line-height: 40px;
- 
+
   text-align: left;
   list-style: none;
 }
 #emoji-list li p {
-  display: inline-block;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
@@ -125,19 +111,12 @@ export default {
   font-weight: 700;
 }
 #emoji-list p:hover img.emoji {
-  max-width: 32px;
+  max-width: 36px;
 }
-/* #emoji-list li span{
-   transition: all .6s ease-in;
-} */
-/* #emoji-list span {
-  max-width: 75%;
-  display: inline-block;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  transition: all .6s ease-in;
-} */
+#emoji-list li span {
+  transition: all 0.6s ease-in;
+}
+
 .notification {
   position: fixed;
   bottom: 0;

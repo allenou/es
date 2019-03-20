@@ -9,6 +9,7 @@
     "deploy": "git subtree push --prefix dist origin gh-pages"
   },
   "dependencies": {
+    "downloadjs": "^1.4.7",
     "emojilib": "^2.4.0",
     "twemoji": "^11.3.0",
     "vue": "^2.6.6",
