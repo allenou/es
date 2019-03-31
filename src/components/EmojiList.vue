@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(item,index) in list" :key="index">
         <p>
-          <i v-html="emoji2Image(item.char)" @click="down($event,item)"></i>
+          <i v-html="emoji2Image(item.char)" @click="downEmoji($event,item)"></i>
           <span @click="copyEmojiName(item.name)">:{{item.name}}:</span>
         </p>
       </li>
@@ -52,7 +52,7 @@ export default {
       }
     },
 
-    down(e, emoji) {
+    downEmoji(e, emoji) {
       const element = e.target;
       if (element.tagName === "IMG") {
         download(element.getAttribute("src"));
@@ -112,9 +112,6 @@ export default {
 }
 #emoji-list p:hover img.emoji {
   max-width: 36px;
-}
-#emoji-list li span {
-  transition: all 0.6s ease-in;
 }
 
 .notification {

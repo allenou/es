@@ -45,25 +45,18 @@ export default {
           item => item.name.includes(word) || item.keywords.includes(word)
         );
       }
-
-      // fetch("https://emoji.getdango.com/api/emoji?q=" + keyword)
-      //   .then(res => res.json())
-      //   .then(res => {
-      //     this.list = res.results;
-      //   });
     }
   }
 };
 </script>
 
 <style >
-
 html,
 body {
   margin: 0;
   background-color: #efefef;
 }
-p{
+p {
   margin: 0;
 }
 #app {
