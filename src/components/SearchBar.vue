@@ -1,7 +1,7 @@
 <template>
   <header>
     <p>
-      <input type="text" placeholder="Try to search..." v-model="keyword" ref="search">
+      <input type="text" placeholder="Emoji name to search..." v-model="keyword" ref="search">
     </p>
     <GitHubBadge slug="allenou/emoji" fill="#fff"></GitHubBadge>
   </header>
@@ -39,8 +39,8 @@ export default {
 header {
   display: flex;
   align-items: center;
-  padding: 30px 0;
-  background-color: #232323;
+  padding: 20px 0;
+  background-color: #3F51B5;
 }
 header /deep/ a{
   position: absolute!important ;

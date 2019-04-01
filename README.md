@@ -1,29 +1,15 @@
-# es
+# emoji
+A simple twitter emoji searcher. You can copy the name and download an image(svg) of the emoji.
 
-## Project setup
-```
-yarn install
-```
+## Site
+http://www.toyou.xyz/emoji/
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
+## Thanks
+- [emoji]
+- [twemoji] 
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## License
+MIT
 
-### Run your tests
-```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[emoji]: https://github.com/egoist/emoji
+[twemoji]: https://github.com/egoist/emoji

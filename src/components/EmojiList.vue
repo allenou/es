@@ -4,7 +4,7 @@
     <ul>
       <li v-for="(item,index) in list" :key="index">
         <p>
-          <i v-html="emoji2Image(item.char)" @click="downEmoji($event,item)"></i>
+          <i v-html="emoji2Image(item.char)" @click="downloadEmoji($event,item)"></i>
           <span @click="copyEmojiName(item.name)">:{{item.name}}:</span>
         </p>
       </li>
@@ -52,7 +52,7 @@ export default {
       }
     },
 
-    downEmoji(e, emoji) {
+    downloadEmoji(e) {
       const element = e.target;
       if (element.tagName === "IMG") {
         download(element.getAttribute("src"));
