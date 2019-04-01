@@ -12,4 +12,4 @@ http://www.toyou.xyz/emoji/
 MIT
 
 [emoji]: https://github.com/egoist/emoji
-[twemoji]: https://github.com/egoist/emoji
+[twemoji]: https://github.com/twitter/twemoji
