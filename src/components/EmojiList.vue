@@ -95,7 +95,7 @@ export default {
   list-style: none;
 }
 #emoji-list li p {
-  cursor: pointer;
+  
   white-space: nowrap;
   overflow: hidden;
   max-width: 90%;
@@ -106,6 +106,10 @@ export default {
   max-width: 30px;
   margin-right: 10px;
   vertical-align: middle;
+  cursor: pointer;
+}
+#emoji-list li span{
+  cursor: pointer;
 }
 #emoji-list li p:hover span {
   font-weight: 700;
