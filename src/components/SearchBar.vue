@@ -1,7 +1,7 @@
 <template>
   <header>
     <p>
-      <input type="text" placeholder="Emoji name to search..." v-model="keyword" ref="search">
+      <input type="text" placeholder="Keyword to search..." v-model="keyword" ref="search">
     </p>
     <GitHubBadge slug="allenou/emoji" fill="#fff"></GitHubBadge>
   </header>

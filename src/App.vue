@@ -42,7 +42,11 @@ export default {
         this.results = this.all.slice(0, 100);
       } else {
         this.results = this.all.filter(
-          item => item.name.includes(word) || item.keywords.includes(word)
+          item =>
+            item.name.includes(word) ||
+            word.includes(item.name) ||
+            item.keywords.includes(word) ||
+            word.includes(item.char)
         );
       }
     }

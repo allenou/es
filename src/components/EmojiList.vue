@@ -1,11 +1,11 @@
 <template>
   <div id="emoji-list">
-    <input type="text" id="copy">
-    <ul>
+    <input type="text" id="copy" ref="copy">
+    <ul @contextmenu.prevent="downloadEmoji($event)">
       <li v-for="(item,index) in list" :key="index">
         <p>
-          <i v-html="emoji2Image(item.char)" @click="downloadEmoji($event,item)"></i>
-          <span @click="copyEmojiName(item.name)">:{{item.name}}:</span>
+          <i v-html="emoji2Image(item.char)" @click="copyEmojiCode($event)"></i>
+          <span @click="copyEmojiName($event)">:{{item.name}}:</span>
         </p>
       </li>
     </ul>
@@ -22,8 +22,7 @@ export default {
   data() {
     return {
       copied: false,
-      copyedText: "",
-      emoji: null
+      copyedText: ""
     };
   },
   watch: {
@@ -42,16 +41,26 @@ export default {
         ext: ".svg"
       });
     },
-    copyEmojiName(name) {
-      const input = document.querySelector("#copy");
-      input.value = this.copyedText = ":" + name + ":";
-      input.select();
+    copyText(text) {
+      this.$refs.copy.value = this.copyedText = text;
+      this.$refs.copy.select();
       if (document.execCommand("copy")) {
         this.copied = true;
         document.execCommand("copy");
       }
     },
-
+    copyEmojiName(e) {
+      const element = e.target;
+      if (element.tagName === "SPAN") {
+        this.copyText(element.innerText);
+      }
+    },
+    copyEmojiCode(e) {
+      const element = e.target;
+      if (element.tagName === "IMG") {
+        this.copyText(element.getAttribute("alt"));
+      }
+    },
     downloadEmoji(e) {
       const element = e.target;
       if (element.tagName === "IMG") {
@@ -95,7 +104,6 @@ export default {
   list-style: none;
 }
 #emoji-list li p {
-  
   white-space: nowrap;
   overflow: hidden;
   max-width: 90%;
@@ -108,7 +116,7 @@ export default {
   vertical-align: middle;
   cursor: pointer;
 }
-#emoji-list li span{
+#emoji-list li span {
   cursor: pointer;
 }
 #emoji-list li p:hover span {

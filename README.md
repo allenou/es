@@ -1,8 +1,13 @@
 # emoji
-A simple twitter emoji searcher. You can copy the name and download an image(svg) of the emoji.
+A simple twitter emoji searcher. 
 
-## Site
-http://www.toyou.xyz/emoji/
+## Usage
+### Search
+Enter keywords to search for emoji.
+### Copy
+Left click on emoji to copy code, left click on the text to copy name.
+### Download
+Right click on emoji to download the image(svg).
 
 ## Thanks
 - [emoji]
