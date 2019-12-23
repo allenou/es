@@ -119,10 +119,10 @@ export default {
 #emoji-list li span {
   cursor: pointer;
 }
-#emoji-list li p:hover span {
+#emoji-list li span:hover {
   font-weight: 700;
 }
-#emoji-list p:hover img.emoji {
+#emoji-list i:hover img.emoji {
   max-width: 36px;
 }
 

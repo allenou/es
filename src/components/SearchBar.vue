@@ -49,7 +49,7 @@ header /deep/ a{
 p {
   width: 60%;
   margin: auto;
-  padding: 0 30px;
+  padding: 0 20px;
   background-color: #fff;
 }
 input {
